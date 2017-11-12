@@ -1,0 +1,104 @@
+#wrapper {
+	background-position: left top; width: 1200px; margin-top: 0px; margin-right: auto; margin-left: auto; background-image: url("../images/logo.png"); background-repeat: no-repeat; background-size: auto 100px; background-color: rgb(255, 255, 255);
+}
+body {
+	font-family: verdana;
+}
+header {
+	padding: 20px 20px 20px 0px; height: 60px; text-align: right; valign: middle;
+}
+h1 {
+	padding: 0px 0px 0px 250px; text-align: left; font-size: 3.5em; float: left; display: block;
+}
+#container {
+	margin: auto; padding: 0px; width: 100%; float: left;
+}
+.contentInfo {
+	margin: 5px; padding: 5px; border-radius: 5px; border: 2px solid rgb(76, 175, 80); border-image: none; width: 31%; text-align: left; color: black; font-size: 1.7em; font-weight: bold; float: left;
+}
+#contentClock {
+	width: 100%; text-align: center; color: black; line-height: 0.8em; padding-top: 0px; padding-bottom: 10px; font-size: 12em; font-weight: bold; margin-bottom: 5px; border-top-color: rgb(204, 204, 204); border-bottom-color: rgb(204, 204, 204); border-top-width: 1px; border-bottom-width: 1px; border-top-style: dotted; border-bottom-style: dotted; float: left;
+}
+#contentTimes {
+	width: 100%; text-align: center; color: black; padding-top: 50px; padding-bottom: 20px; font-size: 3.2em; font-weight: bold; float: left;
+}
+ul {
+	list-style: none; padding: 0px;
+}
+li {
+	padding: 3px; font-size: 2vw;
+}
+li.lowli {
+	padding: 3px; font-size: 3vw;
+}
+.button {
+	margin: 4px 2px; padding: 15px 32px; border-radius: 5px; border: currentColor; border-image: none; text-align: center; color: white; font-size: 16px; text-decoration: none; display: inline-block; cursor: pointer; background-color: rgb(76, 175, 80);
+}
+.button2 {
+	cursor: pointer;
+}
+label {
+	padding: 10px 10px 10px 0px; width: 80px; height: 20px; text-align: right; color: white; font-size: 0.8em; display: inline-block;
+}
+.input {
+	border-radius: 5px; border: 1px solid rgb(204, 204, 204); border-image: none; width: 150px; height: 20px; padding-left: 10px; font-size: 0.8em; display: inline-block;
+}
+hide {
+	margin: 0px; padding: 0px; width: 0px; height: 0px;
+}
+fieldset {
+	margin: 10px; padding: 0px 5px 5px; border-radius: 5px; border: 1px solid white; border-image: none; width: 22%; float: left; display: block;
+}
+legend {
+	padding: 5px 10px; border-radius: 5px; color: black; margin-left: 20px; background-color: white; align: center;
+}
+footer {
+	padding: 0px; height: 10px; text-align: right; clear: both; valign: middle;
+}
+.overlay {
+	transition:0.5s; left: 0px; top: 0px; width: 100%; height: 0%; position: fixed; z-index: 1; -ms-overflow-y: hidden; background-color: rgba(0, 0, 0, 0.9);
+}
+.overlay-content {
+	top: 5px; width: 100%; text-align: center; margin-top: 15px; position: relative; background-color: rgba(0, 0, 0, 0.9);
+}
+.overlay a {
+	padding: 8px; transition:0.3s; color: rgb(129, 129, 129); font-size: 36px; text-decoration: none; display: block;
+}
+.overlay a:hover {
+	color: rgb(241, 241, 241);
+}
+.overlay a:focus {
+	color: rgb(241, 241, 241);
+}
+.overlay .closebtn {
+	top: 20px; right: 45px; font-size: 60px; position: absolute;
+}
+@media screen and (max-height:450px)
+{
+.overlay {
+	-ms-overflow-y: auto;
+}
+.overlay a {
+	font-size: 20px;
+}
+.overlay .closebtn {
+	top: 15px; right: 35px; font-size: 40px;
+}
+}
+
+#myNav
+{
+	display: none;
+}
+
+table
+{
+	width: 100%;
+	margin-top: 40px;
+}
+
+td
+{
+	font-size: 3.5em;
+	padding: 20px;
+}

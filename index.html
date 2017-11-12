@@ -1,0 +1,187 @@
+﻿<!DOCTYPE html>
+<HTML>
+
+<HEAD>
+  <TITLE>Exam Information</TITLE>
+  <META http-equiv="Content-Type" content="text/html; charset=utf-8">
+  <LINK href="styles/reset.css" rel="stylesheet" type="text/css">
+  <LINK href="styles/style.css" rel="stylesheet" type="text/css">
+  <script type="text/javascript">
+    function startTime() {
+      var today = new Date();
+      var h = today.getHours();
+      var m = today.getMinutes();
+      var s = today.getSeconds();
+      h = checkTime(h);
+      m = checkTime(m);
+      s = checkTime(s);
+      document.getElementById('clock').innerHTML =
+        h + ":" + m + ":" + s;
+      var t = setTimeout(startTime, 500);
+    }
+
+    function checkTime(i) {
+      if (i < 10) {
+        i = "0" + i
+      }; // add zero in front of numbers < 10
+      return i;
+    }
+  </script>
+  <script src="scripts/knockout-3.4.2.js"></script>
+</HEAD>
+
+<BODY onload="startTime()">
+  <DIV id="wrapper">
+    <DIV class="overlay" id="myNav">
+      <DIV class="overlay-content">
+        <FORM name="test" action="" method="post">
+          <LABEL for="examCentre">Centre:
+          </LABEL>
+          <INPUT name="examCentre" class="input" type="text" data-bind="textInput: centreNumber" />
+        </FORM>
+        <BR>
+        <BR>
+        <!-- ko foreach: exams -->
+        <FIELDSET>
+          <LEGEND>Exam:
+            <span data-bind="text: $index()+1"></span>
+          </LEGEND>
+          <LABEL for="examSubject">Subject: </LABEL>
+          <INPUT class="input" type="text" data-bind="textInput: subject" />
+          <BR>
+          <LABEL for="examPaper">Paper: </LABEL>
+          <INPUT class="input" type="text" data-bind="textInput: paper" />
+          <BR>
+          <LABEL for="examHours">Hours: </LABEL>
+          <INPUT class="input" type="text" data-bind="textInput: hours">
+          <BR>
+          <LABEL for="examMinutes">Minutes:
+          </LABEL>
+          <INPUT class="input" type="text" data-bind="textInput: minutes">
+          <BR>
+          <BR>
+        </FIELDSET>
+        <!-- /ko -->
+        <BR>
+        <BR>
+
+        <INPUT name="resetUpdate" class="button" id="resetUpdate" onclick="closeNav()" type="button" value="Close" data-bind="click: hideForm"
+        />
+      </DIV>
+    </DIV>
+    <HEADER>
+      <H1>Centre ID:
+        <span data-bind="text: centreNumber"></span>
+      </H1>
+      <FORM name="startTimeForm" action="" method="post">
+        <INPUT name="resetStartTime" class="button" id="resetStartTime" type="button" value="Reset" data-bind="click: resetExam"
+        />
+        <INPUT name="addStartTime" class="button" id="addStartTime" type="button" value="Start Exam" data-bind="click: startExam"
+        />
+        <SPAN class="button2" data-bind="click: showForm">⚙</SPAN>
+      </FORM>
+    </HEADER>
+    <DIV id="contentClock">
+      <SPAN id="clock"></SPAN>
+    </DIV>
+    <DIV id="container">
+      <table>
+        <tbody data-bind="foreach: exams">
+          <tr data-bind="if: enabled">
+            <td class="subject" data-bind="text: subject"></td>
+            <td class="paper" data-bind="text: paper"></td>
+            <td class="starttime" data-bind="text: startTime"></td>
+            <td class="endtime" data-bind="text: endTime"></td>
+          </tr>
+        </tbody>
+      </table>
+    </DIV>
+    <FOOTER></FOOTER>
+  </DIV>
+  <SCRIPT>
+    function openNav() {
+      document.getElementById("myNav").style.height = "100%";
+    }
+
+    function closeNav() {
+      document.getElementById("myNav").style.height = "0%";
+    }
+
+    var numberOfExams = 8;
+
+    var exam = function () {
+      var me = this;
+      this.paper = ko.observable();
+      this.subject = ko.observable();
+      this.hours = ko.observable(1);
+      this.minutes = ko.observable(0);
+      this.enabled = ko.observable();
+
+      this.startTime = ko.observable('');
+      this.endTime = ko.observable('');
+
+      this.startExam = function (now) {
+        if (me.subject() && me.subject().length > 0) {
+          var endTime = new Date(now.getTime());
+          endTime.setHours(now.getHours() + parseInt(me.hours()));
+          endTime.setMinutes(now.getMinutes() + parseInt(me.minutes()));
+          me.startTime(me.formatDate(now));
+          me.endTime(me.formatDate(endTime));
+
+          me.enabled(true);
+        } else {
+          me.enabled(false);
+        }
+      }
+
+      this.formatDate = function (d) {
+        var hours = d.getHours();
+        var minutes = d.getMinutes();
+
+        var f = hours + ':';
+
+        if (minutes < 10) {
+          f += '0';
+        }
+
+        f += minutes + '';
+
+        return f;
+      }
+    };
+
+    var viewModel = function () {
+      var me = this;
+      var examData = [];
+      for (var i = 0; i < numberOfExams; i++) {
+        examData.push(new exam());
+      }
+
+      this.exams = ko.observableArray(examData);
+      this.centreNumber = ko.observable('12839');
+
+      this.showForm = function () {
+        document.getElementById('myNav').style.display = 'block';
+      }
+      this.hideForm = function () {
+        document.getElementById('myNav').style.display = 'none';
+      }
+
+      this.startExam = function () {
+        var now = new Date;
+
+        for (var i = 0; i < me.exams().length; i++) {
+          me.exams()[i].startExam(now);
+        }
+      }
+      this.resetExam = function () {
+        for (var i = 0; i < me.exams().length; i++) {
+          me.exams()[i].enabled(false);
+        }
+      }
+    };
+    ko.applyBindings(new viewModel());
+  </SCRIPT>
+</BODY>
+
+</HTML>
