@@ -86,6 +86,14 @@
     </DIV>
     <DIV id="container">
       <table>
+        <thead>
+          <tr>
+              <th>Subject</th>
+              <th></th>
+              <th>Start</th>
+              <th>End</th>
+            </tr>
+        </thead>
         <tbody data-bind="foreach: exams">
           <tr data-bind="if: enabled">
             <td class="subject" data-bind="text: subject"></td>
