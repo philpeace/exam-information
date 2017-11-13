@@ -5,7 +5,7 @@ body {
 	font-family: verdana;
 }
 header {
-	padding: 20px 20px 20px 0px; height: 60px; text-align: right; valign: middle;
+	padding: 20px 20px 20px 0px; height: 60px; text-align: right; vertical-align: middle;
 }
 h1 {
 	padding: 0px 0px 0px 250px; text-align: left; font-size: 3.5em; float: left; display: block;
@@ -56,7 +56,7 @@ footer {
 	padding: 0px; height: 10px; text-align: right; clear: both; valign: middle;
 }
 .overlay {
-	transition:0.5s; left: 0px; top: 0px; width: 100%; height: 0%; position: fixed; z-index: 1; -ms-overflow-y: hidden; background-color: rgba(0, 0, 0, 0.9);
+	transition:0.5s; left: 0px; top: 0px; width: 100%; position: fixed; z-index: 1; -ms-overflow-y: hidden; background-color: rgba(0, 0, 0, 0.9);
 }
 .overlay-content {
 	top: 5px; width: 100%; text-align: center; margin-top: 15px; position: relative; background-color: rgba(0, 0, 0, 0.9);
